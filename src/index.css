@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html,
+#root {
+  /* width: 100%; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #434f43a8;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

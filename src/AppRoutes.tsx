@@ -1,0 +1,47 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./Pages/Auth/Login";
+import Register from "./Pages/Auth/Register";
+import ForgotPassword from "./Pages/Auth/ForgotPassword";
+import VerifyOtp from "./Pages/Auth/VerifyOtp";
+import EditProfile from "./Pages/User/EditProfile";
+import { useEffect } from "react";
+import { useAuth } from "./hooks/useAuth";
+import Home from "./Pages/User/Home";
+
+const AppRoutes = () => {
+  const { token } = useAuth();
+  const currentLocation = window.location.pathname;
+  useEffect(() => {
+    if (token === null && currentLocation !== "/login") {
+      window.location.href = "/login";
+    } else if (token !== null && currentLocation === "/login") {
+      window.location.href = "/ ";
+    } else if (token === null && currentLocation === "/") {
+      window.location.href = "/login";
+    }
+  });
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          // element={
+          //   <Link to="/login">
+          //     <button className="m-3 p-4 bg-green-700 text-white">
+          //       To Login
+          //     </button>
+          //   </Link>
+          // }
+          element={<Home />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/verifyotp" element={<VerifyOtp />} />
+        <Route path="/EditProfile" element={<EditProfile />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default AppRoutes;
