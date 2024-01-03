@@ -23,17 +23,7 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          // element={
-          //   <Link to="/login">
-          //     <button className="m-3 p-4 bg-green-700 text-white">
-          //       To Login
-          //     </button>
-          //   </Link>
-          // }
-          element={<Home />}
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />

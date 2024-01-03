@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         poppins: "Poppins",
         inter: "Inter",
+        abeezee: "ABeeZee",
       },
     },
   },
