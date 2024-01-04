@@ -41,3 +41,9 @@ export type typeCreateProfile = {
   UserId: number;
   PictureId: number;
 };
+
+export type typeCategoryCard = {
+  imageUrl: string;
+  categoryName: string;
+  categoryDesc: string;
+};
