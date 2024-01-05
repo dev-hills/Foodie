@@ -38,6 +38,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* PROFILE */}
         <img src={person} alt="" />
       </div>
     </div>

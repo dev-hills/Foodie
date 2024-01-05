@@ -1,15 +1,7 @@
 import { createContext, useState } from "react";
+import { typeAuthContext } from "../utils/types";
 
-type AuthContextType = {
-  token: string | null;
-  setToken: (token: string | null) => void;
-  userId: number | null;
-  setUserId: (userId: number | null) => void;
-  hasProfile: boolean;
-  setHasProfile: (hasProfile: boolean) => void;
-};
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<typeAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);

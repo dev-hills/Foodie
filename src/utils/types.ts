@@ -47,3 +47,21 @@ export type typeCategoryCard = {
   categoryName: string;
   categoryDesc: string;
 };
+
+export type typeFoodCard = {
+  imageUrl: string;
+  foodName: string;
+  cafLocation: string;
+  deliveryTime: string;
+  price: string;
+  foodRating: string;
+};
+
+export type typeAuthContext = {
+  token: string | null;
+  setToken: (token: string | null) => void;
+  userId: number | null;
+  setUserId: (userId: number | null) => void;
+  hasProfile: boolean;
+  setHasProfile: (hasProfile: boolean) => void;
+};

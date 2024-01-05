@@ -8,6 +8,7 @@ import burgerElement from "/burgerElement.png";
 import doughnutElement from "/doughnutElement.png";
 import CategoryCard from "../../Components/CategoryCard";
 import FoodCard from "../../Components/FoodCard";
+import Footer from "../../Components/Footer";
 
 const Home = () => {
   const categoryData = [
@@ -30,15 +31,84 @@ const Home = () => {
     },
   ];
 
+  const foodData = [
+    {
+      imageUrl: "/1.png",
+      foodName: "Chicken Salad",
+      cafLocation: "Cafetaria 1",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "4.4",
+    },
+    {
+      imageUrl: "/2.png",
+      foodName: "Margherita Pizza",
+      cafLocation: "Cafetaria 2",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "4.0",
+    },
+    {
+      imageUrl: "/3.png",
+      foodName: "Chicken Alfredo Pasta",
+      cafLocation: "Cafetaria 3",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "4.2",
+    },
+    {
+      imageUrl: "/4.png",
+      foodName: "Classic Cheeseburger",
+      cafLocation: "Cafetaria 4",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "4.1",
+    },
+    {
+      imageUrl: "/5.png",
+      foodName: "Veggie Fajitas",
+      cafLocation: "Cafetaria 1",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "3.9",
+    },
+    {
+      imageUrl: "/6.png",
+      foodName: "Spaghetti Carbonara",
+      cafLocation: "Cafetaria 3",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "4.2",
+    },
+    {
+      imageUrl: "/7.png",
+      foodName: "Gourmet Salad",
+      cafLocation: "Cafetaria 3",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "3.8",
+    },
+    {
+      imageUrl: "/8.png",
+      foodName: "Shrimp Tacos",
+      cafLocation: "Cafetaria 5",
+      deliveryTime: "40 mins",
+      price: "1,000",
+      foodRating: "3.2",
+    },
+  ];
+
   return (
     <div>
       <Navbar />
 
+      {/* ELEMENTS */}
       <div>
         <img src={burgerElement} className="absolute px-[85px]" />
         <img src={doughnutElement} className="absolute px-[85px] right-0" />
       </div>
 
+      {/* HOME IMAGE AND TEXT */}
       <div className="px-[85px] pt-[150px] flex flex-row items-center justify-between">
         {/* LEFT */}
         <div>
@@ -73,32 +143,54 @@ const Home = () => {
         </div>
       </div>
 
+      {/* ELEMENTS */}
       <div className="pb-[150px]">
         <img src={burgerElement} className="absolute px-[85px]" />
         <img src={doughnutElement} className="absolute px-[85px] right-0" />
       </div>
 
-      <h1 className="text-center text-[#34BC5B] font-poppins text-[30px] font-bold mt-[70px] mb-[30px]">
-        What would you like to have today?
-      </h1>
+      {/* WHAT WILL YOU LIKE TO HAVE TODAY */}
+      <div>
+        <h1 className="text-center text-[#34BC5B] font-poppins text-[30px] font-bold mt-[70px] mb-[30px]">
+          What would you like to have today?
+        </h1>
 
-      <div className="flex flex-row items-center">
-        {categoryData.map((data, idx) => (
-          <CategoryCard
-            key={idx}
-            imageUrl={data.imageUrl}
-            categoryName={data.categoryName}
-            categoryDesc={data.categoryDesc}
-          />
-        ))}
+        <div className="flex flex-row items-center">
+          {categoryData.map((data, idx) => (
+            <CategoryCard
+              key={idx}
+              imageUrl={data.imageUrl}
+              categoryName={data.categoryName}
+              categoryDesc={data.categoryDesc}
+            />
+          ))}
+        </div>
       </div>
 
+      {/* FEATURED ITEMS */}
       <div className="px-[85px]">
         <p className="text-[#212121] font-poppins text-[28px] font-bold mt-[120px] mb-[30px]">
           Featured Items
         </p>
-        <FoodCard />
+
+        <div className="mb-[55px] flex flex-row gap-[25px] flex-wrap justify-center">
+          {foodData.map((data, idx) => (
+            <div>
+              <FoodCard
+                key={idx}
+                imageUrl={data.imageUrl}
+                foodName={data.foodName}
+                cafLocation={data.cafLocation}
+                deliveryTime={data.deliveryTime}
+                price={data.price}
+                foodRating={data.foodRating}
+              />
+            </div>
+          ))}
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
