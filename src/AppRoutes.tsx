@@ -7,6 +7,7 @@ import EditProfile from "./Pages/User/EditProfile";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import Home from "./Pages/User/Home";
+import Menu from "./Pages/User/Menu";
 
 const AppRoutes = () => {
   const { token } = useAuth();
@@ -29,6 +30,7 @@ const AppRoutes = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verifyotp" element={<VerifyOtp />} />
         <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/ChooseMenu" element={<Menu />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,6 +3,7 @@ import search from "/search.png";
 import cart from "/cart.png";
 import eye from "/eye.png";
 import person from "/person.png";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="px-[85px] py-[25px] flex flex-row items-center justify-between">
@@ -26,7 +27,9 @@ const Navbar = () => {
       <div className="flex flex-row items-center gap-[100px]">
         {/* LINKS */}
         <div className="flex flex-row gap-[40px]">
-          <div className="font-inter text-[15px] text-black">Menu</div>
+          <Link to="/ChooseMenu">
+            <div className="font-inter text-[15px] text-black">Menu</div>
+          </Link>
           <div className="font-inter text-[15px] text-black">Saved Items</div>
           <div className="font-inter text-[15px] text-black">Help</div>
           <div className="font-poppins text-[15px] text-black flex flex-row items-center gap-[10px]">
