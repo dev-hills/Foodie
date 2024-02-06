@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate } from "react-router-dom";
 import facebook from "/facebook.png";
 import google from "/google.png";
@@ -60,7 +61,7 @@ const Login = () => {
     mutate(dataToSend, {
       onSuccess: (res) => {
         console.log(res);
-        setToken(res.data?.token);
+        setToken(res.data?.responseToken?.token?.token);
         setUserId(res.data?.refreshToken?.userId);
         console.log(cred);
 
@@ -70,7 +71,9 @@ const Login = () => {
           });
 
           {
-            res.data?.profile ? navigate("/") : navigate("/EditProfile");
+            res.data?.responseToken?.profile
+              ? navigate("/")
+              : navigate("/EditProfile");
           }
         }
 
@@ -79,9 +82,9 @@ const Login = () => {
         });
       },
 
-      onError: (err) => {
+      onError: (err: any) => {
         console.log(err);
-        toast.error(`LOGIN FAILED :(, WAHALA TI WA`, {
+        toast.error(err?.request?.responseText, {
           position: toast.POSITION.TOP_LEFT,
         });
       },

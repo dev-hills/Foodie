@@ -6,7 +6,7 @@ import {
   typeVerifyAccount,
 } from "../utils/types";
 
-const base_url = "https://fd-test.bakare.tech/api/v1/user";
+const base_url = "https://fd-beta.bakare.tech/api/v1/user";
 
 export const register = async (data: typeRegisterDetails) => {
   const response = await axios.post(`${base_url}/create`, data);

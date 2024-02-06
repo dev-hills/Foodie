@@ -7,7 +7,9 @@ import EditProfile from "./Pages/User/EditProfile";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import Home from "./Pages/User/Home";
-import Menu from "./Pages/User/Menu";
+import KitchenMenu from "./Pages/User/KitchenMenu";
+import Kitchen from "./Pages/User/Kitchen";
+import Cart from "./Pages/User/Cart";
 
 const AppRoutes = () => {
   const { token } = useAuth();
@@ -16,7 +18,7 @@ const AppRoutes = () => {
     if (token === null && currentLocation !== "/login") {
       window.location.href = "/login";
     } else if (token !== null && currentLocation === "/login") {
-      window.location.href = "/ ";
+      window.location.href = "/";
     } else if (token === null && currentLocation === "/") {
       window.location.href = "/login";
     }
@@ -30,7 +32,9 @@ const AppRoutes = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verifyotp" element={<VerifyOtp />} />
         <Route path="/EditProfile" element={<EditProfile />} />
-        <Route path="/ChooseMenu" element={<Menu />} />
+        <Route path="/ChooseKitchen" element={<Kitchen />} />
+        <Route path="/KitchenMenu/:id" element={<KitchenMenu />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

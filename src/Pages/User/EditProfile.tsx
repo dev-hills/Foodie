@@ -9,7 +9,7 @@ import { typeCreateProfile } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { userId } = useAuth();
+  const { token } = useAuth();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate, isPending } = useUploadMedia();
@@ -62,14 +62,21 @@ const EditProfile = () => {
       firstName: firstName,
       lastName: lastName,
       ProfileSourceId: 1,
-      UserId: userId,
       PictureId: pictureId,
     };
 
-    mutateCreateProfile(dataToSend, {
+    const data = {
+      data: dataToSend,
+      token: token,
+    };
+
+    console.log(dataToSend, token, pictureId);
+
+    mutateCreateProfile(data, {
       onSuccess: (res) => {
         console.log(res);
         console.log(firstName, lastName);
+        console.log(token);
         navigate("/");
         queryClient.invalidateQueries({
           queryKey: [`Login`],
@@ -81,30 +88,6 @@ const EditProfile = () => {
     });
   };
 
-  //     const formData = new FormData();
-
-  //     if (imageFiles.length > 0) {
-  //       formData.append("file", imageFiles[0]);
-  //     }
-
-  //     const dataToSend: any = {
-  //       file: imageFiles,
-  //     };
-
-  //     console.log(file);
-
-  //     mutate(dataToSend, {
-  //       onSuccess: (res) => {
-  //         console.log(res);
-  //         queryClient.invalidateQueries({
-  //           queryKey: [`Login`],
-  //         });
-  //       },
-  //       onError: (error) => {
-  //         console.log(error);
-  //       },
-  //     });
-  //   };
   return (
     <div>
       <div className="px-[300px] sm:px-[20px]">

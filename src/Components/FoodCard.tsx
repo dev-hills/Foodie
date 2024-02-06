@@ -1,16 +1,46 @@
-import star from "/star.png";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import location from "/location.png";
 import save from "/save.png";
-import cart from "/cartWhite.png";
+// import cart from "/cartWhite.png";
 import { typeFoodCard } from "../utils/types";
+import { useQueryClient } from "@tanstack/react-query";
+import { useAddToCart } from "../hooks/mutations/cart";
+import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 const FoodCard = ({
   imageUrl,
   foodName,
   cafLocation,
-  deliveryTime,
+  category,
   price,
-  foodRating,
+  productId,
 }: typeFoodCard) => {
+  const { token } = useAuth();
+  const { mutate, isPending } = useAddToCart(token);
+  const queryClient = useQueryClient();
+  const [addToCartSuccess, setAddToCartSuccess] = useState<number>(null);
+
+  const addToCart = () => {
+    const dataToSend: any = {
+      productId: productId,
+    };
+
+    mutate(dataToSend, {
+      onSuccess: (res) => {
+        console.log(res);
+        setAddToCartSuccess(res?.status);
+
+        queryClient.invalidateQueries({
+          queryKey: [`Login`],
+        });
+      },
+
+      onError: (err) => {
+        console.log(err);
+      },
+    });
+  };
+
   return (
     <div>
       <div className="w-[400px] h-[470px] mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
@@ -25,11 +55,8 @@ const FoodCard = ({
 
         <div className="px-[12px] py-[15px]">
           <div className="flex flex-row items-center gap-[8px]">
-            <div className="flex flex-row items-center text-center gap-[3px] rounded-[8px] text-white bg-[#6EA837] p-[5px] font-poppins text-[17px] font-bold">
-              <img src={star} alt="" /> {foodRating}
-            </div>
             <h1 className="text-[#424242] font-poppins text-[17px]">
-              Dining & Delivery
+              {category}
             </h1>
           </div>
 
@@ -42,22 +69,26 @@ const FoodCard = ({
               <img src={location} alt="" /> {cafLocation}
             </div>
 
-            <h2 className="text-black font-poppins text-[17px] mt-[5px]">
-              Est. Delivery Time: {deliveryTime}
-            </h2>
-
             <h1 className="text-[#212121] font-poppins text-[21px] font-bold mt-[10px]">
               {price}
             </h1>
           </div>
 
-          <div className="flex flex-row items-center gap-[10px] mt-[15px]">
-            <button className="flex flex-row items-center gap-[5px] h-[35px] rounded-[12px] p-[22px] bg-[#FFF2E8] text-[#34BC5B] text-center font-poppins text-[18px] font-bold">
+          <div className="flex flex-row items-center w-[100%] gap-[10px] mt-[15px]">
+            <button className="w-[50%] flex flex-row items-center justify-center gap-[5px] h-[35px] rounded-[12px] py-[22px] px-[10px] bg-[#FFF2E8] text-[#34BC5B] text-center font-poppins text-[18px] font-bold">
               <img src={save} alt="" /> Save for later
             </button>
 
-            <button className="flex flex-row items-center gap-[5px] h-[35px] rounded-[12px] p-[22px] bg-[#34BC5B] text-white text-center font-poppins text-[18px] font-bold">
-              <img src={cart} alt="" /> Add to cart
+            <button
+              onClick={() => addToCart()}
+              className="w-[50%] flex flex-row items-center justify-center gap-[5px] h-[35px] rounded-[12px] py-[22px] px-[10px] bg-[#34BC5B] leading-4 text-white text-center font-poppins text-[18px] font-bold"
+            >
+              {addToCartSuccess === 200
+                ? "Added"
+                : isPending
+                ? "Adding..."
+                : "Add To cart"}
+              {/* <img src={cart} alt="" /> Add to cart */}
             </button>
           </div>
         </div>

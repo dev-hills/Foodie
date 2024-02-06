@@ -38,7 +38,6 @@ export type typeCreateProfile = {
   firstName: string;
   lastName: string;
   ProfileSourceId: number;
-  UserId: number;
   PictureId: number;
 };
 
@@ -52,9 +51,9 @@ export type typeFoodCard = {
   imageUrl: string;
   foodName: string;
   cafLocation: string;
-  deliveryTime: string;
+  category: string;
   price: string;
-  foodRating: string;
+  productId: number;
 };
 
 export type typeAuthContext = {
