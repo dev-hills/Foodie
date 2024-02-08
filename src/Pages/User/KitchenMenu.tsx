@@ -7,6 +7,7 @@ import loader from "/loader.svg";
 const KitchenMenu = () => {
   const { id } = useParams();
   const { data: apiData } = useGetKitchenMenu(id);
+  console.log(apiData);
 
   return (
     <div>
@@ -15,10 +16,10 @@ const KitchenMenu = () => {
       <div className="pt-[120px]">
         <div className="px-[85px] py-[30px]">
           <h1 className="uppercase font-inter text-[40px] font-normal text-center">
-            nabiss cafeteria
+            {apiData?.data?.menus[0]?.Business?.businessName}
           </h1>
           <h2 className="text-[35px] w-[800px] font-medium font-inter mx-auto border-[15px] border-[#008000] border-r-0 border-y-0 px-[16px] rounded-[10px]">
-            Welcome to nabiss cafeteria what will you like to have today?
+            {`Welcome to ${apiData?.data?.menus[0]?.Business?.businessName} what will you like to have today?`}
           </h2>
           <div className="mt-[50px]">
             <div className="mb-[55px] flex flex-row gap-[25px] flex-wrap justify-center">

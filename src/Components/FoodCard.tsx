@@ -43,7 +43,7 @@ const FoodCard = ({
 
   return (
     <div>
-      <div className="w-[400px] h-[470px] mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
+      <div className="w-[370px] h-[430px] mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
         <div>
           {/* <div className="absolute py-[8px] px-[20px] rounded-[8px] mt-[12px] ml-[250px] flex flex-row items-center gap-[15px] bg-[#aaaaaa33] backdrop-blur-[10px] text-white">
             <div className="w-[11px] h-[11px] bg-[#94C763] rounded-full"></div>

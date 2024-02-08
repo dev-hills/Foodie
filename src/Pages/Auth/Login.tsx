@@ -11,6 +11,7 @@ import { useLogin } from "../../hooks/mutations/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../../hooks/useAuth";
+import loader from "/loaderWhite.svg";
 
 const Login = () => {
   const { setToken, setUserId } = useAuth();
@@ -66,15 +67,19 @@ const Login = () => {
         console.log(cred);
 
         {
-          toast.success(`LOGIN SUCCESSFUL :), COMPLETE PROFILE`, {
-            position: toast.POSITION.TOP_LEFT,
-          });
+          res.data?.responseToken?.profile
+            ? toast.success(`LOGIN SUCCESSFUL :)`, {
+                position: toast.POSITION.TOP_LEFT,
+              })
+            : toast.success(`LOGIN SUCCESSFUL :), COMPLETE PROFILE`, {
+                position: toast.POSITION.TOP_LEFT,
+              });
+        }
 
-          {
-            res.data?.responseToken?.profile
-              ? navigate("/")
-              : navigate("/EditProfile");
-          }
+        {
+          res.data?.responseToken?.profile
+            ? navigate("/")
+            : navigate("/EditProfile");
         }
 
         queryClient.invalidateQueries({
@@ -84,9 +89,15 @@ const Login = () => {
 
       onError: (err: any) => {
         console.log(err);
-        toast.error(err?.request?.responseText, {
-          position: toast.POSITION.TOP_LEFT,
-        });
+        err?.response?.status === 401 &&
+          toast.error("Invalid Username or Password", {
+            position: toast.POSITION.TOP_LEFT,
+          });
+
+        err?.response?.status === 422 &&
+          toast.error("Password must not be less than 8 characters ", {
+            position: toast.POSITION.TOP_LEFT,
+          });
       },
     });
 
@@ -188,9 +199,13 @@ const Login = () => {
             <button
               disabled={!isButtonEnabled()}
               type="submit"
-              className="bg-[#008000] rounded-[22px] py-[10px] px-[158px] sm:px-[120px] w-[400px] text-white font-poppins font-medium text-[18px] leading-normal"
+              className="bg-[#008000] rounded-[22px] py-[10px] px-[158px] sm:px-[120px] w-[400px] text-white flex items-center justify-center font-poppins font-medium text-[18px] leading-normal"
             >
-              {isPending ? "Loading..." : "Sign in"}
+              {isPending ? (
+                <img src={loader} alt="" width={30} className="text-white" />
+              ) : (
+                "Sign in"
+              )}
             </button>
           </div>
         </form>

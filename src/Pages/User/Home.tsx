@@ -115,11 +115,11 @@ const Home = () => {
 
         {/* FEATURED ITEMS */}
         <div className="px-[85px]">
-          <p className="text-[#212121] font-poppins text-[28px] font-bold mt-[120px] mb-[30px]">
+          <p className="text-[#212121] text-center font-poppins text-[28px] font-bold mt-[120px] mb-[30px]">
             Featured Items
           </p>
 
-          <div className="mb-[55px] flex flex-row gap-[25px] flex-wrap justify-center">
+          <div className="mb-[55px] flex flex-row gap-[35px] flex-wrap justify-center">
             {data?.status !== 200 ? (
               <img src={loader} alt="" />
             ) : (

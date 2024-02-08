@@ -10,6 +10,7 @@ html,
   padding: 0;
   box-sizing: border-box;
   background-color: #eeeeee;
+  user-select: none;
 }
 
 button:disabled {
