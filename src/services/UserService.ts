@@ -29,3 +29,31 @@ export const GetDashboardData = async (token) => {
   });
   return response.data;
 };
+
+export const GetUser = async (token) => {
+  const response = await axios.get(`${base_url}/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const GetUserAddresses = async (token) => {
+  const response = await axios.get(`${base_url}/addresses`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const setAddressDefault = async (token, data) => {
+  const response = await axios.put(`${base_url}/address/default`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

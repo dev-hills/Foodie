@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetUserCart } from "../hooks/queries/cart";
 import { useAuth } from "../hooks/useAuth";
 
@@ -37,9 +38,11 @@ const CheckoutCard = () => {
         <p className="font-poppins font-bold text-[18px]">{`\u20A6 ${data?.data?.products?.totalAmount}`}</p>
       </div>
 
-      <button className="mx-auto w-[100%] py-[12px] font-poppins rounded-[50px] mt-[40px] font-bold text-white bg-[#008000]">
-        PROCEED TO CHECKOUT
-      </button>
+      <Link to="/confirmOrder">
+        <button className="mx-auto w-[100%] py-[12px] font-poppins rounded-[50px] mt-[40px] font-bold text-white bg-[#008000]">
+          PROCEED TO CHECKOUT
+        </button>
+      </Link>
     </div>
   );
 };

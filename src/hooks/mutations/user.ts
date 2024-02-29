@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from "@tanstack/react-query";
-import { createProfile, uploadImage } from "../../services/UserService";
+import {
+  createProfile,
+  setAddressDefault,
+  uploadImage,
+} from "../../services/UserService";
 import { typeCreateProfile } from "../../utils/types";
 
 export const useUploadMedia = () => {
@@ -15,5 +19,12 @@ export const useCreateProfile = () => {
     mutationKey: ["createProfile"],
     mutationFn: ({ data, token }: { data: typeCreateProfile; token: string }) =>
       createProfile(data, token),
+  });
+};
+
+export const useSetAddressDefault = (token) => {
+  return useMutation({
+    mutationKey: ["setAddressDefault"],
+    mutationFn: (data) => setAddressDefault(token, data),
   });
 };

@@ -10,6 +10,7 @@ import Home from "./Pages/User/Home";
 import KitchenMenu from "./Pages/User/KitchenMenu";
 import Kitchen from "./Pages/User/Kitchen";
 import Cart from "./Pages/User/Cart";
+import ConfirmOrder from "./Pages/User/ConfirmOrder";
 
 const AppRoutes = () => {
   const { token } = useAuth();
@@ -35,6 +36,7 @@ const AppRoutes = () => {
         <Route path="/ChooseKitchen" element={<Kitchen />} />
         <Route path="/KitchenMenu/:id" element={<KitchenMenu />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/confirmOrder" element={<ConfirmOrder />} />
       </Routes>
     </BrowserRouter>
   );

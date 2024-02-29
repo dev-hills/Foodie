@@ -98,6 +98,16 @@ const Login = () => {
           toast.error("Password must not be less than 8 characters ", {
             position: toast.POSITION.TOP_LEFT,
           });
+
+        err?.request?.status === 0 &&
+          toast.error("No Internet Connection", {
+            position: toast.POSITION.TOP_LEFT,
+          });
+
+        err?.request?.status === 429 &&
+          toast.error("Try again later", {
+            position: toast.POSITION.TOP_LEFT,
+          });
       },
     });
 
