@@ -8,9 +8,9 @@ export const useGetKitchen = () => {
   });
 };
 
-export const useGetKitchenMenu = (id) => {
+export const useGetKitchenMenu = (id, token) => {
   return useQuery({
     queryKey: [`getKitchenMenu-${id}`],
-    queryFn: () => GetKitchenMenu(id),
+    queryFn: () => GetKitchenMenu(id, token),
   });
 };

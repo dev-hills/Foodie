@@ -7,9 +7,14 @@ export const GetKitchen = async () => {
   return response.data;
 };
 
-export const GetKitchenMenu = async (id) => {
+export const GetKitchenMenu = async (id, token) => {
   const response = await axios.get(
-    `${base_url}/kitchen?kitchenId=${id}&page=0&size=50`
+    `${base_url}/kitchen?kitchenId=${id}&page=0&size=50`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return response.data;
 };

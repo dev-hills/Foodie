@@ -45,26 +45,26 @@ const Home = () => {
     <div>
       <Navbar />
 
-      <div className="pt-[150px]">
+      <div className="pt-[150px] sm:pt-[20px] lg:pt-[20px]">
         {/* ELEMENTS */}
-        <div>
+        <div className="sm:hidden lg:hidden">
           <img src={burgerElement} className="absolute px-[85px]" />
           <img src={doughnutElement} className="absolute px-[85px] right-0" />
         </div>
 
         {/* HOME IMAGE AND TEXT */}
-        <div className="px-[85px] pt-[150px] flex flex-row items-center justify-between">
+        <div className="sm:px-[10px] px-[85px] pt-[150px] flex flex-row sm:flex-col lg:flex-col sm:gap-[50px] lg:gap-[50px] items-center justify-between">
           {/* LEFT */}
           <div>
             {/* MAIN TEXT */}
-            <h1 className="w-[500px] font-abeezee text-[50px] leading-[62px] text-black font-medium">
+            <h1 className="w-[500px] sm:w-[100%] font-abeezee text-[50px] leading-[62px] text-black font-medium">
               Hungry? No worries! Getting food made easier{" "}
               <span className="text-[#34BC5B]">Whenever</span>
             </h1>
             {/* ORDER BTN */}
-            <div className="flex flex-row gap-[20px] mt-[20px]">
+            <div className="flex flex-row gap-[20px] mt-[20px] sm:mt-[10px]">
               {/* ORDER NOW BTN */}
-              <button className="bg-[#008000] px-[15px] py-[6px] rounded-[20px] text-white font-poppins text-[18px] mt-[30px] flex flex-row items-center gap-[10px]">
+              <button className="bg-[#008000] px-[15px] py-[6px] sm:py-[15px] rounded-[20px] text-white font-poppins text-[18px] mt-[30px] flex flex-row items-center gap-[10px]">
                 <img src={cart} alt="" />
                 Order Now
               </button>
@@ -73,7 +73,7 @@ const Home = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="flex flex-row items-center gap-[30px]">
+          <div className="flex flex-row sm:flex-col lg:flex-col items-center gap-[30px]">
             <img
               src={data?.data?.floatingItem?.Pictures[1]?.url}
               alt=""
@@ -81,7 +81,7 @@ const Home = () => {
               className="rounded-full object-cover"
             />
             {/* SOCIAL LINKS */}
-            <div className="flex flex-col items-center gap-[30px]">
+            <div className="flex flex-col sm:flex-row lg:flex-row items-center gap-[30px]">
               <img src={linkedin} alt="" width={30} />
               <img src={instagram} alt="" width={30} />
               <img src={facebook} alt="" width={30} />
@@ -90,18 +90,18 @@ const Home = () => {
         </div>
 
         {/* ELEMENTS */}
-        <div className="pb-[150px]">
+        <div className="pb-[150px] sm:hidden lg:hidden">
           <img src={burgerElement} className="absolute px-[85px]" />
           <img src={doughnutElement} className="absolute px-[85px] right-0" />
         </div>
 
         {/* WHAT WILL YOU LIKE TO HAVE TODAY */}
         <div>
-          <h1 className="text-center text-[#34BC5B] font-poppins text-[30px] font-bold mt-[70px] mb-[30px]">
+          <h1 className="text-center text-[#34BC5B] font-poppins text-[30px] font-bold mt-[70px] sm:mt-[150px] lg:mt-[150px] mb-[30px]">
             What would you like to have today?
           </h1>
 
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row sm:flex-col sm:mx-[10px] lg:mx-[10px] lg:gap-[10px] items-center">
             {categoryData.map((data, idx) => (
               <CategoryCard
                 key={idx}
@@ -123,7 +123,7 @@ const Home = () => {
             {data?.status !== 200 ? (
               <img src={loader} alt="" />
             ) : (
-              data?.data?.featureItems?.rows?.map((data, idx) => (
+              data?.data?.featureItems?.map((data, idx) => (
                 <div>
                   <FoodCard
                     key={idx}

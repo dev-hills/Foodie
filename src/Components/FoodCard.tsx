@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import location from "/location.png";
-import save from "/save.png";
-// import cart from "/cartWhite.png";
+import saveIcon from "/save.png";
 import { typeFoodCard } from "../utils/types";
-import { useQueryClient } from "@tanstack/react-query";
-import { useAddToCart } from "../hooks/mutations/cart";
+import { useAddToCart, useSaveItem } from "../hooks/mutations/cart";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const FoodCard = ({
   imageUrl,
   foodName,
@@ -17,7 +17,7 @@ const FoodCard = ({
 }: typeFoodCard) => {
   const { token } = useAuth();
   const { mutate, isPending } = useAddToCart(token);
-  const queryClient = useQueryClient();
+  const { mutate: save } = useSaveItem(token);
   const [addToCartSuccess, setAddToCartSuccess] = useState<number>(null);
 
   const addToCart = () => {
@@ -29,12 +29,26 @@ const FoodCard = ({
       onSuccess: (res) => {
         console.log(res);
         setAddToCartSuccess(res?.status);
-
-        queryClient.invalidateQueries({
-          queryKey: [`Login`],
-        });
       },
 
+      onError: (err) => {
+        console.log(err);
+      },
+    });
+  };
+
+  const handleSaveItem = (id) => {
+    const dataToSend: any = {
+      productId: id,
+    };
+
+    save(dataToSend, {
+      onSuccess: (res) => {
+        console.log(res);
+        toast.success(`LOGIN SUCCESSFUL :)`, {
+          position: toast.POSITION.TOP_LEFT,
+        });
+      },
       onError: (err) => {
         console.log(err);
       },
@@ -75,9 +89,12 @@ const FoodCard = ({
           </div>
 
           <div className="flex flex-row items-center w-[100%] gap-[10px] mt-[15px]">
-            <button className="w-[50%] flex flex-row items-center justify-center gap-[5px] h-[35px] rounded-[12px] py-[22px] px-[10px] bg-[#FFF2E8] text-[#34BC5B] text-center font-poppins text-[18px] font-bold">
-              <img src={save} alt="" /> Save for later
-            </button>
+            <div
+              onClick={() => handleSaveItem(productId)}
+              className="w-[50%] cursor-pointer flex flex-row items-center justify-center gap-[5px] h-[35px] rounded-[12px] py-[22px] px-[10px] bg-[#FFF2E8] text-[#34BC5B] text-center font-poppins text-[18px] font-bold"
+            >
+              <img src={saveIcon} alt="" /> Save for later
+            </div>
 
             <button
               onClick={() => addToCart()}

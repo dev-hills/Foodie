@@ -31,7 +31,7 @@ const ConfirmOrder = () => {
   const [displayPaymentMethod, setDisplayPaymentMethod] =
     useState<boolean>(false);
 
-  console.log(data);
+  console.log(userCart);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [amount, setAmount] = useState<string>("");
   const [transactionId, setTransactionId] = useState<number>(null);
@@ -61,7 +61,7 @@ const ConfirmOrder = () => {
       if (selectedMethod === "card") {
         const dataToSend: any = {
           amount: userCart?.data?.products?.totalAmount,
-          orderId: userCart?.data?.order?.id,
+          orderId: userCart?.data?.products?.order?.id,
         };
 
         cardMutate(dataToSend, {
@@ -77,8 +77,10 @@ const ConfirmOrder = () => {
         const dataToSend: any = {
           destinationId: 1,
           amount: userCart?.data?.products?.totalAmount,
-          orderId: userCart?.data?.order?.id,
+          orderId: userCart?.data?.products?.order?.id,
         };
+
+        console.log(dataToSend);
 
         walletMutate(dataToSend, {
           onSuccess: (res) => {

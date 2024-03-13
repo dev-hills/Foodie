@@ -54,3 +54,32 @@ export const decreaseItemInCart = async (id, token) => {
   );
   return response.data;
 };
+
+export const getOrders = async (token) => {
+  const response = await axios.get(`${base_url}/user/all`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const saveItem = async (token, data) => {
+  const response = await axios.post(`${base_url}/saved`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+export const getSavedItem = async (token) => {
+  const response = await axios.get(`${base_url}/saved?page=0&size=50`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

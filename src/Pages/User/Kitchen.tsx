@@ -11,19 +11,19 @@ const Kitchen = () => {
   return (
     <div>
       <Navbar />
-      <div className="pt-[120px]">
+      <div className="pt-[120px] sm:pt-[50px]">
         {/* ELEMENTS */}
-        <div>
+        <div className="sm:hidden lg:hidden">
           <img src={burgerElement} className="absolute px-[85px]" />
           <img src={doughnutElement} className="absolute px-[85px] right-0" />
         </div>
 
         <div className="flex flex-col items-center justify-center">
-          <div className="font-inter text-[37px] text-[#008000] mt-[80px]">
+          <div className="font-inter text-[37px] sm:text-[30px] text-[#008000] mt-[80px]">
             PICK CAFETARIA
           </div>
 
-          <div className="flex flex-row items-center gap-[400px] mt-[50px]">
+          <div className="flex flex-row sm:flex-col items-center gap-[400px] sm:gap-[50px] mt-[50px]">
             {apiData?.status !== 200 ? (
               <img src={loader} alt="" />
             ) : (
@@ -36,7 +36,7 @@ const Kitchen = () => {
                       width={250}
                       className="w-[250px] h-[250px] object-cover rounded-full"
                     />
-                    <p className="font-inter text-[30px] ">
+                    <p className="font-inter text-[30px] sm:text-[25px]">
                       {data?.businessName}
                     </p>
                   </div>
@@ -46,7 +46,7 @@ const Kitchen = () => {
           </div>
         </div>
 
-        <div className="pb-[150px]">
+        <div className="pb-[150px] sm:hidden lg:hidden">
           <img src={burgerElement} className="absolute px-[85px]" />
           <img src={doughnutElement} className="absolute px-[85px] right-0" />
         </div>

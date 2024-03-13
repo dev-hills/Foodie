@@ -3,10 +3,12 @@ import Navbar from "../../Components/Navbar";
 import { useGetKitchenMenu } from "../../hooks/queries/menu";
 import { useParams } from "react-router-dom";
 import loader from "/loader.svg";
+import { useAuth } from "../../hooks/useAuth";
 
 const KitchenMenu = () => {
   const { id } = useParams();
-  const { data: apiData } = useGetKitchenMenu(id);
+  const { token } = useAuth();
+  const { data: apiData } = useGetKitchenMenu(id, token);
   console.log(apiData);
 
   return (
@@ -14,21 +16,17 @@ const KitchenMenu = () => {
       <Navbar />
 
       <div className="pt-[120px]">
-        <div className="px-[85px] py-[30px]">
-          {apiData?.status !== 200 ? (
-            <div className="flex flex-row items-center justify-center py-[150px]">
-              <img src={loader} />
-            </div>
-          ) : (
+        <div className="px-[85px] sm:px-[10px] lg:px-[10px] py-[30px]">
+          {apiData?.status === 200 ? (
             <div>
               <h1 className="uppercase font-inter text-[40px] font-normal text-center">
                 {apiData?.data?.menus[0]?.Business?.businessName}
               </h1>
-              <h2 className="text-[35px] w-[800px] font-medium font-inter mx-auto border-[15px] border-[#008000] border-r-0 border-y-0 px-[16px] rounded-[10px]">
+              <h2 className="text-[35px] sm:text-[25px] w-[800px] sm:w-[100%] font-medium font-inter mx-auto border-[15px] border-[#008000] border-r-0 border-y-0 px-[16px] rounded-[10px]">
                 {`Welcome to ${apiData?.data?.menus[0]?.Business?.businessName} what will you like to have today?`}
               </h2>
               <div className="mt-[50px]">
-                <div className="mb-[55px] flex flex-row gap-[25px] flex-wrap justify-center">
+                <div className="mb-[55px] flex flex-row sm:flex sm:flex-row  sm:w-[100%] gap-[25px] flex-wrap justify-center">
                   {apiData?.data?.menus.map((data, idx) => (
                     <div>
                       <FoodCard
@@ -46,6 +44,10 @@ const KitchenMenu = () => {
                   ))}
                 </div>
               </div>
+            </div>
+          ) : (
+            <div className="flex flex-row items-center justify-center py-[150px]">
+              <img src={loader} />
             </div>
           )}
         </div>

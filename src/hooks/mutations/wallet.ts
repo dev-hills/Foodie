@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import {
   completeWalletTransaction,
   initiateCardTransaction,
+  initiateWalletTopup,
   initiateWalletTransaction,
 } from "../../services/WalletService";
 
@@ -23,5 +24,12 @@ export const useCompleteWalletTransaction = (token) => {
   return useMutation({
     mutationKey: ["completeWalletTransaction"],
     mutationFn: (data) => completeWalletTransaction(data, token),
+  });
+};
+
+export const useInitiateWalletTopup = (token) => {
+  return useMutation({
+    mutationKey: ["initiateWalletTopup"],
+    mutationFn: (data) => initiateWalletTopup(data, token),
   });
 };

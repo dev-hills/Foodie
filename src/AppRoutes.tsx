@@ -11,6 +11,11 @@ import KitchenMenu from "./Pages/User/KitchenMenu";
 import Kitchen from "./Pages/User/Kitchen";
 import Cart from "./Pages/User/Cart";
 import ConfirmOrder from "./Pages/User/ConfirmOrder";
+import Orders from "./Pages/User/Orders";
+import Inbox from "./Pages/User/Inbox";
+import Faq from "./Pages/User/Faq";
+import SavedItems from "./Pages/User/SavedItems";
+import TopupWallet from "./Pages/User/TopupWallet";
 
 const AppRoutes = () => {
   const { token } = useAuth();
@@ -37,6 +42,11 @@ const AppRoutes = () => {
         <Route path="/KitchenMenu/:id" element={<KitchenMenu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/confirmOrder" element={<ConfirmOrder />} />
+        <Route path="/profile/orders" element={<Orders />} />
+        <Route path="/profile/inbox" element={<Inbox />} />
+        <Route path="/profile/savedItems" element={<SavedItems />} />
+        <Route path="/profile/topup" element={<TopupWallet />} />
+        <Route path="/faq" element={<Faq />} />
       </Routes>
     </BrowserRouter>
   );

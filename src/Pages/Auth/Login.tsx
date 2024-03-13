@@ -118,7 +118,7 @@ const Login = () => {
   };
 
   return (
-    <div className="my-[20px] sm:my-[5px] mx-[70px] sm:mx-[4px] flex flex-col items-center gap-[15px]">
+    <div className="my-[20px] sm:my-[5px] mx-[70px] sm:mx-[4px] sm:w-[100%] flex flex-col items-center gap-[15px]">
       <div className="flex flex-row items-center gap-[18px] sm:gap-[5px] justify-end w-[100%]">
         <p className="font-poppins">Do not have an Account</p>
         <Link

@@ -37,3 +37,12 @@ export const completeWalletTransaction = async (data: any, token: string) => {
   );
   return response.data;
 };
+
+export const initiateWalletTopup = async (data: any, token: string) => {
+  const response = await axios.post(`${base_url}/initiate-wallet-topup`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
