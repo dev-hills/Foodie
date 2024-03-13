@@ -14,11 +14,14 @@ const Navbar = () => {
   return (
     <div className="sm:px-[10px] px-[85px] py-[20px] shadow-lg fixed w-[100%] z-[100] bg-[#eeeeee] flex flex-row items-center justify-between">
       {/* <div className="sm:w-[100%] h-[100vh] bg-red-500">hilary</div> */}
-      <div className="flex flex-row items-center gap-[50px]">
+      <div className="flex flex-row items-start gap-[10px]">
         {/* LOGO */}
         <Link to="/">
           <img src={logo} alt="" width={85} />
         </Link>
+        <div className=" bg-green-600 text-white px-[10px] rounded-[5px] text-[10px]">
+          1.0
+        </div>
 
         {/* SEARCH BAR */}
         {/* <div className="bg-white w-[320px] px-[15px] rounded-[10px] gap-0 flex flex-row items-center">
