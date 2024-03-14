@@ -10,7 +10,7 @@ const Accordion = ({ title, description }: any) => {
   };
 
   return (
-    <div className="w-[1000px] bg-white px-[70px] py-[20px] flex flex-row items-start justify-between rounded-[10px]">
+    <div className="w-[1000px] sm:w-[100%] sm:px-[20px] bg-white px-[70px] py-[20px] flex flex-row items-start justify-between rounded-[10px]">
       <div className="w-[80%]">
         <h1 className="font-poppins font-bold text-[20px] leading-[39px]">
           {title}
