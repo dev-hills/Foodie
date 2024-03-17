@@ -8,11 +8,13 @@ import { useGetDashboardData } from "../hooks/queries/user";
 import loader from "/loader.svg";
 import hamburger from "/hamburger.png";
 import { useState } from "react";
+import { useGetUserCart } from "../hooks/queries/cart";
 const Navbar = () => {
   const { token } = useAuth();
   const { data } = useGetDashboardData(token);
   const [displayHamburger, setDisplayHamburger] = useState(false);
   const [displayBalance, setDisplayBalance] = useState(false);
+  const { data: cartData } = useGetUserCart(token);
 
   const toggleHamburger = () => {
     setDisplayHamburger(!displayHamburger);
@@ -69,9 +71,14 @@ const Navbar = () => {
           </Link>
           <div className="font-inter text-[20px] text-black">Help</div>
           <Link to="/cart">
-            <div className="font-poppins text-[20px] text-black flex flex-row items-center gap-[10px]">
-              <img src={cart} alt="" width={25} />
-              Cart
+            <div className="font-poppins text-[15px] text-black flex flex-row items-start gap-[5px]">
+              <div className="flex flex-row items-center gap-[5px]">
+                <img src={cart} alt="" width={25} />
+                Cart
+              </div>
+              <div className="bg-[#008000] rounded-full w-[20px] h-[20px] text-center text-[15px] text-white">
+                {cartData?.data?.products?.rows.length}
+              </div>
             </div>
           </Link>
           <div className="font-poppins text-[20px] text-black flex flex-row items-center gap-[8px]">
@@ -130,9 +137,14 @@ const Navbar = () => {
             </Link>
             <div className="font-inter text-[15px] text-black">Help</div>
             <Link to="/cart">
-              <div className="font-poppins text-[15px] text-black flex flex-row items-center gap-[10px]">
-                <img src={cart} alt="" width={25} />
-                Cart
+              <div className="font-poppins text-[15px] text-black flex flex-row items-start gap-[5px]">
+                <div className="flex flex-row items-center gap-[5px]">
+                  <img src={cart} alt="" width={25} />
+                  Cart
+                </div>
+                <div className="bg-[#008000] rounded-full w-[20px] h-[20px] text-center text-[15px] text-white">
+                  {cartData?.data?.products?.rows.length}
+                </div>
               </div>
             </Link>
             <div className="font-poppins text-[15px] text-black flex flex-row items-center gap-[8px]">

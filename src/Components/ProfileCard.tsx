@@ -23,11 +23,11 @@ const ProfileCard = () => {
       name: "Top Up Wallet",
       link: "/profile/topup",
     },
-    {
-      icon: "/withdraw.png",
-      name: "Withdraw",
-      link: "/",
-    },
+    // {
+    //   icon: "/withdraw.png",
+    //   name: "Withdraw",
+    //   link: "/",
+    // },
   ];
   return (
     <div className="w-[25%] sm:w-[100%] bg-white rounded-[10px] drop-shadow-lg sm:flex sm:flex-row sm:justify-between sm:items-center">

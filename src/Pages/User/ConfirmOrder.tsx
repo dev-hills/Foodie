@@ -17,6 +17,7 @@ import {
 } from "../../hooks/mutations/wallet";
 import { useGetUserCart } from "../../hooks/queries/cart";
 import WalletOtpModal from "../../Components/WalletOtpModal";
+import AddAddressModal from "../../Components/AddAddressModal";
 
 const ConfirmOrder = () => {
   const { token } = useAuth();
@@ -33,6 +34,7 @@ const ConfirmOrder = () => {
 
   console.log(userCart);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [openAddressModal, setOpenAddressModal] = useState(false);
   const [amount, setAmount] = useState<string>("");
   const [transactionId, setTransactionId] = useState<number>(null);
   const [destinationId, setDestinationId] = useState<number>(null);
@@ -216,7 +218,10 @@ const ConfirmOrder = () => {
 
                 <div className="border-[1px] border-[#AAAAAA] border-x-0 border-t-0 px-[13px] pt-[20px] pb-[15px] flex flex-row items-center gap-[13px]">
                   <img src={plus} alt="" />
-                  <p className="font-poppins font-medium text-[15px] text-[#008000]">
+                  <p
+                    onClick={() => setOpenAddressModal(true)}
+                    className="cursor-pointer font-poppins font-medium text-[15px] text-[#008000]"
+                  >
                     ADD ADDRESS
                   </p>
                 </div>
@@ -327,6 +332,11 @@ const ConfirmOrder = () => {
         amount={amount}
         transactionId={transactionId}
         destinationId={destinationId}
+      />
+
+      <AddAddressModal
+        openAddressModal={openAddressModal}
+        setOpenAddressModal={setOpenAddressModal}
       />
     </div>
   );

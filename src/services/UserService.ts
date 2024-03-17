@@ -57,3 +57,13 @@ export const setAddressDefault = async (token, data) => {
 
   return response.data;
 };
+
+export const createUserAddress = async (token, data) => {
+  const response = await axios.post(`${base_url}/address`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

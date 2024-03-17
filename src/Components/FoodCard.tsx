@@ -45,7 +45,7 @@ const FoodCard = ({
     save(dataToSend, {
       onSuccess: (res) => {
         console.log(res);
-        toast.success(`LOGIN SUCCESSFUL :)`, {
+        toast.success(`Item has been saved :)`, {
           position: toast.POSITION.TOP_LEFT,
         });
       },

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Modal from "react-modal";
-import { useCompleteWalletTransaction } from "../hooks/mutations/wallet";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useCreateUserAddress } from "../hooks/mutations/user";
 
 // import { useState } from "react";
 
@@ -23,44 +23,33 @@ const customStyles = {
   },
 };
 
-const WalletOtpModal = ({
-  modalIsOpen,
-  setIsOpen,
-  transactionId,
-  amount,
-  destinationId,
-}: any) => {
+const AddAddressModal = ({ openAddressModal, setOpenAddressModal }: any) => {
   const { token } = useAuth();
   const navigate = useNavigate();
-  const { mutate } = useCompleteWalletTransaction(token);
-  const [otp, setOtp] = useState<string>("");
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const { mutate } = useCreateUserAddress(token);
+  const [address, setAddress] = useState<string>("");
 
-  const isButtonEnabled = () => {
-    return otp.length === 5;
-  };
+  function closeModal() {
+    setOpenAddressModal(false);
+  }
 
   const submit = (e) => {
     e.preventDefault();
     const dataToSend: any = {
-      transactionId: transactionId,
-      otp: Number(otp),
-      amount: Number(amount),
-      destinationId: destinationId,
+      description: address,
+      is_default: true,
     };
 
     mutate(dataToSend, {
       onSuccess: (res) => {
         console.log(res);
-        setIsOpen(false);
+        setOpenAddressModal(false);
 
         {
-          toast.success(`Transaction Completed, Order Processing`, {
+          toast.success(`Address Created Successfully`, {
             position: toast.POSITION.TOP_RIGHT,
           });
-          navigate("/profile/orders");
+          navigate("/confirmOrder");
         }
       },
       onError: (err: any) => {
@@ -77,36 +66,34 @@ const WalletOtpModal = ({
   return (
     <div>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={openAddressModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
         <div className="flex flex-col items-center gap-[10px]">
           <h1 className="font-sansPro text-center text-[23px] mb-[30px] font-semibold">
-            CHECK MAIL FOR OTP
+            Enter your delivery address
           </h1>
           <div className="border-[2px] border-[rgba(0, 0, 0, 0.26)] rounded-[12px] px-[10px]">
             <input
               type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
+              value={address}
+              placeholder="Hall Name | Room Number"
+              onChange={(e) => setAddress(e.target.value)}
               className="text-center text-[20px] tracking-widest border-none outline-none bg-transparent px-[10px] h-[50px] w-[480px] sm:w-[100%]"
             />
           </div>
           <button
-            disabled={!isButtonEnabled()}
             onClick={submit}
             className="bg-[#008000] rounded-[22px] py-[10px] px-[158px] sm:px-[120px] mt-[20px] w-[400px] text-white flex items-center justify-center font-poppins font-medium text-[18px] leading-normal"
           >
-            Verify
+            Submit
           </button>
-
-          <p>Resend OTP</p>
         </div>
       </Modal>
     </div>
   );
 };
 
-export default WalletOtpModal;
+export default AddAddressModal;

@@ -12,6 +12,7 @@ import { useGetDashboardData } from "../../hooks/queries/user";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import loader from "/loader.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { token } = useAuth();
@@ -64,10 +65,12 @@ const Home = () => {
             {/* ORDER BTN */}
             <div className="flex flex-row gap-[20px] mt-[20px] sm:mt-[10px]">
               {/* ORDER NOW BTN */}
-              <button className="bg-[#008000] px-[15px] py-[6px] sm:py-[15px] rounded-[20px] text-white font-poppins text-[18px] mt-[30px] flex flex-row items-center gap-[10px]">
-                <img src={cart} alt="" />
-                Order Now
-              </button>
+              <Link to="/ChooseKitchen">
+                <button className="bg-[#008000] px-[15px] py-[6px] sm:py-[15px] rounded-[20px] text-white font-poppins text-[18px] mt-[30px] flex flex-row items-center gap-[10px]">
+                  <img src={cart} alt="" />
+                  Order Now
+                </button>
+              </Link>
             </div>
             {/* QUICK MENU */}
           </div>
