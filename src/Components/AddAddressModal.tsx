@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useCreateUserAddress } from "../hooks/mutations/user";
+import { useQueryClient } from "@tanstack/react-query";
 
 // import { useState } from "react";
 
@@ -28,6 +29,7 @@ const AddAddressModal = ({ openAddressModal, setOpenAddressModal }: any) => {
   const navigate = useNavigate();
   const { mutate } = useCreateUserAddress(token);
   const [address, setAddress] = useState<string>("");
+  const queryClient = useQueryClient();
 
   function closeModal() {
     setOpenAddressModal(false);
@@ -44,6 +46,9 @@ const AddAddressModal = ({ openAddressModal, setOpenAddressModal }: any) => {
       onSuccess: (res) => {
         console.log(res);
         setOpenAddressModal(false);
+        queryClient.invalidateQueries({
+          queryKey: [`getUserAddresses`],
+        });
 
         {
           toast.success(`Address Created Successfully`, {

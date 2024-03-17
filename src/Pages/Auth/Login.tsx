@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate } from "react-router-dom";
-import facebook from "/facebook.png";
-import google from "/google.png";
+// import facebook from "/facebook.png";
+// import google from "/google.png";
 import eye from "/eye.png";
-import check from "/checkBox.png";
+// import check from "/checkBox.png";
 import { useState } from "react";
 import { typeLogin, typeLoginDetails } from "../../utils/types";
 import { useQueryClient } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ const Login = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [rememberToggle, setRememberToggle] = useState<boolean>(false);
+  // const [rememberToggle, setRememberToggle] = useState<boolean>(false);
   const [loginDetails, setLoginDetails] = useState<typeLoginDetails>({
     email: "",
     password: "",
@@ -29,9 +29,9 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const toggleRemember = () => {
-    setRememberToggle(!rememberToggle);
-  };
+  // const toggleRemember = () => {
+  //   setRememberToggle(!rememberToggle);
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -118,7 +118,7 @@ const Login = () => {
   };
 
   return (
-    <div className="my-[20px] sm:my-[5px] mx-[70px] sm:mx-[4px] sm:w-[100%] flex flex-col items-center gap-[15px]">
+    <div className="my-[20px] sm:my-[5px] mx-[70px] sm:mx-[4px] sm:w-[100%] flex flex-col items-center gap-[75px]">
       <div className="flex flex-row items-center gap-[18px] sm:gap-[5px] justify-end w-[100%]">
         <p className="font-poppins">Do not have an Account</p>
         <Link
@@ -129,7 +129,7 @@ const Login = () => {
         </Link>
       </div>
 
-      <div className="w-[600px] sm:w-[100%] flex flex-col items-center justify-center border-[1px] border-[#008000b3] py-[30px] sm:py-[20px] sm:px-[10px] rounded-[20px]">
+      <div className="w-[600px] sm:w-[100%] flex flex-col items-center justify-center border-[1px] border-[#008000b3] py-[50px] sm:py-[20px] sm:px-[10px] rounded-[20px]">
         {/* LOGIN */}
         <p className="text-[#4E514E] font-poppins text-[25px] sm:text-[20px] font-normal leading-[40px] mb-[20px] sm:mb-[10px]">
           LOGIN
@@ -190,7 +190,7 @@ const Login = () => {
           </div>
 
           {/* REMEMBER ME */}
-          <div className="cursor-pointer flex flex-row gap-[8px] sm:gap-[5px] mt-[10px]">
+          {/* <div className="cursor-pointer flex flex-row gap-[8px] sm:gap-[5px] mt-[10px]">
             {rememberToggle ? (
               <div onClick={toggleRemember}>
                 <img src={check} alt="" />
@@ -202,7 +202,7 @@ const Login = () => {
               ></div>
             )}
             <p className="text-[#333] font-poppins text-[17px]">Remember me</p>
-          </div>
+          </div> */}
 
           {/* LOGIN BTN */}
           <div className="mt-[15px] flex justify-center">
@@ -221,27 +221,27 @@ const Login = () => {
         </form>
 
         {/* OR */}
-        <div className="flex flex-row items-center gap-[3px] font-poppins text-[#666] text-[24px] font-black mt-[13px]">
+        {/* <div className="flex flex-row items-center gap-[3px] font-poppins text-[#666] text-[24px] font-black mt-[13px]">
           <div className="h-[2px] w-[220px] sm:w-[150px] bg-[#66666640]"></div>
           OR
           <div className="h-[2px] w-[220px] sm:w-[150px] bg-[#66666640]"></div>
-        </div>
+        </div> */}
 
         {/* FACEBOOK */}
-        <Link to="#">
+        {/* <Link to="#">
           <div className="flex flex-row items-center justify-center gap-[16px] text-[#333] font-poppins text-[20px] sm:text-[18px] font-medium leading-[25px] border-[1px] border-[#333] rounded-[40px] py-[15px] sm:px-[5px] w-[500px] sm:w-[300px] mt-[15px]">
             <img src={facebook} alt="" />
             Continue with Facebook
           </div>
-        </Link>
+        </Link> */}
 
         {/* GOOGLE */}
-        <Link to="#">
+        {/* <Link to="#">
           <div className="flex flex-row items-center justify-center gap-[16px] text-[#333] font-poppins text-[20px] font-medium leading-[25px] border-[1px] border-[#333] rounded-[40px] py-[15px] sm:px-[5px] w-[500px] sm:w-[300px] mt-[20px]">
             <img src={google} alt="" />
             Continue with Google
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
