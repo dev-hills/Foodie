@@ -65,6 +65,13 @@ const Login = () => {
         setToken(res.data?.responseToken?.token?.token);
         setUserId(res.data?.refreshToken?.userId);
         console.log(cred);
+        localStorage.setItem("token", res.data?.responseToken?.token?.token);
+
+        const thrtyMinutes = 1000 * 60 * 30;
+
+        setTimeout(() => {
+          localStorage.removeItem("token");
+        }, thrtyMinutes);
 
         {
           res.data?.responseToken?.profile

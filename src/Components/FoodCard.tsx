@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useQueryClient } from "@tanstack/react-query";
 const FoodCard = ({
   imageUrl,
   foodName,
@@ -19,6 +20,7 @@ const FoodCard = ({
   const { mutate, isPending } = useAddToCart(token);
   const { mutate: save } = useSaveItem(token);
   const [addToCartSuccess, setAddToCartSuccess] = useState<number>(null);
+  const queryClient = useQueryClient();
 
   const addToCart = () => {
     const dataToSend: any = {
@@ -29,6 +31,9 @@ const FoodCard = ({
       onSuccess: (res) => {
         console.log(res);
         setAddToCartSuccess(res?.status);
+        queryClient.invalidateQueries({
+          queryKey: [`getUserCart`],
+        });
       },
 
       onError: (err) => {

@@ -5,7 +5,6 @@ import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import VerifyOtp from "./Pages/Auth/VerifyOtp";
 import EditProfile from "./Pages/User/EditProfile";
 import { useEffect } from "react";
-import { useAuth } from "./hooks/useAuth";
 import Home from "./Pages/User/Home";
 import KitchenMenu from "./Pages/User/KitchenMenu";
 import Kitchen from "./Pages/User/Kitchen";
@@ -18,14 +17,14 @@ import SavedItems from "./Pages/User/SavedItems";
 import TopupWallet from "./Pages/User/TopupWallet";
 
 const AppRoutes = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const currentLocation = window.location.pathname;
   useEffect(() => {
-    if (token === null && currentLocation !== "/login") {
+    if (!token && currentLocation !== "/login") {
       window.location.href = "/login";
-    } else if (token !== null && currentLocation === "/login") {
+    } else if (token && currentLocation === "/login") {
       window.location.href = "/";
-    } else if (token === null && currentLocation === "/") {
+    } else if (!token && currentLocation === "/") {
       window.location.href = "/login";
     }
   });

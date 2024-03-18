@@ -50,7 +50,6 @@ const ConfirmOrder = () => {
     const top = (window.innerHeight - height) / 2;
     const popupWindow = window.open(
       url,
-      "_blank",
       `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,status=yes`
     );
     if (popupWindow) {
