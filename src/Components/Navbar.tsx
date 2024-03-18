@@ -15,6 +15,8 @@ const Navbar = () => {
   const [displayHamburger, setDisplayHamburger] = useState(false);
   const [displayBalance, setDisplayBalance] = useState(false);
   const { data: cartData } = useGetUserCart(token);
+  console.log(data?.data?.walletBalance?.toLocaleString());
+  console.log(cartData);
 
   const toggleHamburger = () => {
     setDisplayHamburger(!displayHamburger);
@@ -77,7 +79,10 @@ const Navbar = () => {
                 Cart
               </div>
               <div className="bg-[#008000] rounded-full w-[20px] h-[20px] text-center text-[15px] text-white">
-                {cartData?.data?.products?.rows.length}
+                {cartData?.error === "Empty Cart" ||
+                cartData?.data?.products?.rows.length === 0
+                  ? "0"
+                  : cartData?.data?.products?.rows.length}
               </div>
             </div>
           </Link>
@@ -143,7 +148,10 @@ const Navbar = () => {
                   Cart
                 </div>
                 <div className="bg-[#008000] rounded-full w-[20px] h-[20px] text-center text-[15px] text-white">
-                  {cartData?.data?.products?.rows.length}
+                  {cartData?.error === "Empty Cart" ||
+                  cartData?.data?.products?.rows.length === 0
+                    ? "0"
+                    : cartData?.data?.products?.rows.length}
                 </div>
               </div>
             </Link>
