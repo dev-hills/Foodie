@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const { token } = useAuth();
   const { data } = useGetUserCart(token);
+  // console.log(data);
 
   const queryClient = useQueryClient();
 
@@ -23,7 +24,7 @@ const Cart = () => {
   const { mutate: increase } = useIncreaseItemInCart(token);
   const { mutate: decrease } = useDecreaseItemInCart(token);
 
-  console.log(data);
+  // console.log(data);
 
   const removeItem = (id) => {
     mutate(id, {

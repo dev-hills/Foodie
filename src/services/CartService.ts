@@ -12,11 +12,15 @@ export const addToCart = async (data, token) => {
 };
 
 export const getUserCart = async (token) => {
+  console.log(token);
+
   const response = await axios.get(`${base_url}/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  // console.log(token);
+
   return response.data;
 };
 

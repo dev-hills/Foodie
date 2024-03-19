@@ -8,12 +8,13 @@ export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState<number | null>(null);
   const [hasProfile, setHasProfile] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedToken = localStorage.getItem("token");
+  //   if (storedToken) {
+  //     setToken(storedToken);
+  //   }
+  //   // console.log(token);
+  // }, [token]);
 
   return (
     <AuthContext.Provider

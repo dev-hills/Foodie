@@ -17,14 +17,20 @@ import SavedItems from "./Pages/User/SavedItems";
 import TopupWallet from "./Pages/User/TopupWallet";
 
 const AppRoutes = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const currentLocation = window.location.pathname;
+  // useEffect(() => {
+  //   if (!token && currentLocation !== "/login") {
+  //     window.location.href = "/login";
+  //   } else if (token && currentLocation === "/login") {
+  //     window.location.href = "/";
+  //   } else if (!token && currentLocation === "/") {
+  //     window.location.href = "/login";
+  //   }
+  // });
+
   useEffect(() => {
-    if (!token && currentLocation !== "/login") {
-      window.location.href = "/login";
-    } else if (token && currentLocation === "/login") {
-      window.location.href = "/";
-    } else if (!token && currentLocation === "/") {
+    if (currentLocation !== "/login") {
       window.location.href = "/login";
     }
   });
