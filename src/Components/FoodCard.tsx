@@ -3,7 +3,7 @@ import location from "/location.png";
 import saveIcon from "/save.png";
 import { typeFoodCard } from "../utils/types";
 import { useAddToCart, useSaveItem } from "../hooks/mutations/cart";
-import { useAuth } from "../hooks/useAuth";
+
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

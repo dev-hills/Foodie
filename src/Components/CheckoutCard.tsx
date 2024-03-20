@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useGetUserCart } from "../hooks/queries/cart";
-import { useAuth } from "../hooks/useAuth";
 
 const CheckoutCard = () => {
   const token = localStorage.getItem("token");

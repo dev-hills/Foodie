@@ -3,7 +3,7 @@ import cart from "/cart.png";
 import eye from "/eye.png";
 import person from "/person.png";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+
 import { useGetDashboardData } from "../hooks/queries/user";
 import loader from "/loader.svg";
 import hamburger from "/hamburger.png";
