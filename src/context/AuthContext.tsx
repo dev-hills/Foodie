@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { typeAuthContext } from "../utils/types";
 
 const AuthContext = createContext<typeAuthContext | undefined>(undefined);
