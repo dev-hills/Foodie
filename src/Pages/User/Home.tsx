@@ -10,12 +10,16 @@ import FoodCard from "../../Components/FoodCard";
 import Footer from "../../Components/Footer";
 import { useGetDashboardData } from "../../hooks/queries/user";
 import { useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
+
 import loader from "/loader.svg";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { token } = useAuth();
+  // const currentDate = new Date();
+  // const currentGMTString = currentDate.toUTCString();
+  // console.log(currentGMTString);
+
+  const token = localStorage.getItem("token");
   const { data } = useGetDashboardData(token);
 
   useEffect(() => {

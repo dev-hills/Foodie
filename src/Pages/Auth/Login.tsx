@@ -10,11 +10,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useLogin } from "../../hooks/mutations/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "../../hooks/useAuth";
+
 import loader from "/loaderWhite.svg";
 
 const Login = () => {
-  const { setToken, setUserId } = useAuth();
+  const currentDate = new Date();
+  const currentGMTString = currentDate.toUTCString();
+  console.log(currentGMTString);
+  // const { setToken, setUserId } = useAuth();
   const { mutate, isPending } = useLogin();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -62,16 +65,12 @@ const Login = () => {
     mutate(dataToSend, {
       onSuccess: (res) => {
         console.log(res);
-        setToken(res.data?.responseToken?.token?.token);
-        setUserId(res.data?.refreshToken?.userId);
         console.log(cred);
-        // localStorage.setItem("token", res.data?.responseToken?.token?.token);
-
-        // const thrtyMinutes = 1000 * 60 * 30;
-
-        // setTimeout(() => {
-        //   localStorage.removeItem("token");
-        // }, thrtyMinutes);
+        localStorage.setItem("token", res.data?.responseToken?.token?.token);
+        localStorage.setItem(
+          "expiryDate",
+          res.data?.responseToken?.token?.expiresIn
+        );
 
         {
           res.data?.responseToken?.profile

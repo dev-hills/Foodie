@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar";
 import ProfileCard from "../../Components/ProfileCard";
 import { useGetOrders } from "../../hooks/queries/cart";
-import { useAuth } from "../../hooks/useAuth";
+
 import loader from "/loader.svg";
 
 const Orders = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetOrders(token);
   console.log(data);
 

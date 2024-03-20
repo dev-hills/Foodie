@@ -4,14 +4,14 @@ import Navbar from "../../Components/Navbar";
 import ProfileCard from "../../Components/ProfileCard";
 import { useInitiateWalletTopup } from "../../hooks/mutations/wallet";
 import { useGetOrders } from "../../hooks/queries/cart";
-import { useAuth } from "../../hooks/useAuth";
+
 import { useNavigate } from "react-router-dom";
 // import loader from "/loader.svg";
 
 const TopupWallet = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(null);
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetOrders(token);
   console.log(data);
 

@@ -3,7 +3,7 @@ import { useGetUserCart } from "../hooks/queries/cart";
 import { useAuth } from "../hooks/useAuth";
 
 const CheckoutCard = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetUserCart(token);
 
   const amount = (price, quantity) => {

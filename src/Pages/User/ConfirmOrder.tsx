@@ -5,7 +5,7 @@ import edit from "/edit.png";
 import plus from "/plusGreen.png";
 import eye from "/eye.png";
 import { useGetUser, useGetUserAddresses } from "../../hooks/queries/user";
-import { useAuth } from "../../hooks/useAuth";
+
 import { useEffect, useState } from "react";
 import { useSetAddressDefault } from "../../hooks/mutations/user";
 import { toast } from "react-toastify";
@@ -20,7 +20,7 @@ import AddAddressModal from "../../Components/AddAddressModal";
 import loader from "/loader.svg";
 
 const ConfirmOrder = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetUserAddresses(token);
   const { data: userData } = useGetUser(token);
   const { mutate } = useSetAddressDefault(token);

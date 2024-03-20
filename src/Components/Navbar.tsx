@@ -10,7 +10,7 @@ import hamburger from "/hamburger.png";
 import { useState } from "react";
 import { useGetUserCart } from "../hooks/queries/cart";
 const Navbar = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetDashboardData(token);
   const [displayHamburger, setDisplayHamburger] = useState(false);
   const [displayBalance, setDisplayBalance] = useState(false);

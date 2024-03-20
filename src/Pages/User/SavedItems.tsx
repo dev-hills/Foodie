@@ -5,13 +5,13 @@ import ProfileCard from "../../Components/ProfileCard";
 import { useGetSavedItem } from "../../hooks/queries/cart";
 import "react-toastify/dist/ReactToastify.css";
 import loader from "/loader.svg";
-import { useAuth } from "../../hooks/useAuth";
+
 import { useAddToCart } from "../../hooks/mutations/cart";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const SavedItems = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetSavedItem(token);
   const { mutate } = useAddToCart(token);
 

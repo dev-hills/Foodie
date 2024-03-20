@@ -3,11 +3,10 @@ import Navbar from "../../Components/Navbar";
 import { useGetKitchenMenu } from "../../hooks/queries/menu";
 import { useParams } from "react-router-dom";
 import loader from "/loader.svg";
-import { useAuth } from "../../hooks/useAuth";
 
 const KitchenMenu = () => {
   const { id } = useParams();
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data: apiData } = useGetKitchenMenu(id, token);
   console.log(apiData);
 

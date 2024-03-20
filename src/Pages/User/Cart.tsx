@@ -3,7 +3,7 @@ import CheckoutCard from "../../Components/CheckoutCard";
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
 import { useGetUserCart } from "../../hooks/queries/cart";
-import { useAuth } from "../../hooks/useAuth";
+
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useDecreaseItemInCart,
@@ -14,7 +14,7 @@ import loader from "/loader.svg";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { data } = useGetUserCart(token);
   // console.log(data);
 

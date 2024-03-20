@@ -25,7 +25,7 @@ const customStyles = {
 };
 
 const AddAddressModal = ({ openAddressModal, setOpenAddressModal }: any) => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { mutate } = useCreateUserAddress(token);
   const [address, setAddress] = useState<string>("");

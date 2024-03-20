@@ -30,7 +30,7 @@ const WalletOtpModal = ({
   amount,
   destinationId,
 }: any) => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { mutate } = useCompleteWalletTransaction(token);
   const [otp, setOtp] = useState<string>("");

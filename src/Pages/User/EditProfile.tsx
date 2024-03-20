@@ -4,12 +4,12 @@ import camera from "/camera.png";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCreateProfile, useUploadMedia } from "../../hooks/mutations/user";
-import { useAuth } from "../../hooks/useAuth";
+
 import { typeCreateProfile } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate, isPending } = useUploadMedia();

@@ -16,7 +16,7 @@ const FoodCard = ({
   price,
   productId,
 }: typeFoodCard) => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   const { mutate, isPending } = useAddToCart(token);
   const { mutate: save } = useSaveItem(token);
   const [addToCartSuccess, setAddToCartSuccess] = useState<number>(null);
