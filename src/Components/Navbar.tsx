@@ -2,7 +2,7 @@ import logo from "/logo.png";
 import cart from "/cart.png";
 import eye from "/eye.png";
 import person from "/person.png";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 
 import { useGetDashboardData } from "../hooks/queries/user";
 import loader from "/loader.svg";
@@ -18,6 +18,13 @@ const Navbar = () => {
   console.log(data?.data?.walletBalance?.toLocaleString());
   console.log(cartData);
 
+  const IsActiveLink = (path) => {
+    const match = useMatch(path);
+    return match
+      ? "font-inter text-[15px] text-[#008000] hover:text-black"
+      : "font-inter text-[15px] text-black hover:text-[#008000]";
+  };
+
   const toggleHamburger = () => {
     setDisplayHamburger(!displayHamburger);
   };
@@ -25,6 +32,7 @@ const Navbar = () => {
   const toggleWalletBalance = () => {
     setDisplayBalance(!displayBalance);
   };
+
   return (
     <>
       {/* HAMBURGER DISPLAY */}
@@ -135,15 +143,20 @@ const Navbar = () => {
           {/* LINKS */}
           <div className="flex flex-row gap-[40px]">
             <Link to="/ChooseKitchen">
-              <div className="font-inter text-[15px] text-black">Menu</div>
+              <div className={`${IsActiveLink("/ChooseKitchen")}`}>Menu</div>
+            </Link>
+            <Link to="/profile/savedItems">
+              <div className={`${IsActiveLink("/profile/savedItems")}`}>
+                Saved Items
+              </div>
             </Link>
             <Link to="/faq">
-              <div className="font-inter text-[15px] text-black">FAQ</div>
+              <div className={`${IsActiveLink("/faq")}`}>FAQ</div>
             </Link>
-            <div className="font-inter text-[15px] text-black">Help</div>
+
             <Link to="/cart">
               <div className="font-poppins text-[15px] text-black flex flex-row items-start gap-[5px]">
-                <div className="flex flex-row items-center gap-[5px]">
+                <div className={`${IsActiveLink("/cart")} flex`}>
                   <img src={cart} alt="" width={25} />
                   Cart
                 </div>

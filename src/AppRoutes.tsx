@@ -18,7 +18,6 @@ import TopupWallet from "./Pages/User/TopupWallet";
 
 const AppRoutes = () => {
   const UserToken = localStorage.getItem("token");
-  const expiresIn = localStorage.getItem("expiryDate");
   const currentLocation = window.location.pathname;
 
   useEffect(() => {
@@ -31,23 +30,23 @@ const AppRoutes = () => {
     }
   }, [UserToken, currentLocation]);
 
-  const currentDate = new Date();
-
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Adding 1 as months are zero-based
-  const day = String(currentDate.getDate()).padStart(2, "0");
-  const hours = String(currentDate.getHours()).padStart(2, "0");
-  const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-  const seconds = String(currentDate.getSeconds()).padStart(2, "0");
-
-  const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-  useEffect(() => {
-    if (expiresIn === formattedDateTime) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("expiryDate");
+  const checkTokenExpiry = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const expiryDate = localStorage.getItem("expiryDate");
+      if (expiryDate) {
+        const now = new Date();
+        const expiryDateTime = new Date(expiryDate);
+        if (now >= expiryDateTime) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("expiryDate");
+          window.location.href = "/login";
+        }
+      }
     }
-  }, [expiresIn, formattedDateTime]);
+  };
+
+  setInterval(checkTokenExpiry, 60000);
 
   return (
     <BrowserRouter>

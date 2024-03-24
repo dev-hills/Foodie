@@ -91,11 +91,19 @@ const SavedItems = () => {
                       </div>
                     </div>
 
-                    <div
-                      onClick={() => addItemToCart(item?.Product?.id)}
-                      className="font-poppins cursor-pointer text-[16px] sm:text-center font-bold px-[20px] py-[10px] bg-[#008000] text-white rounded-md"
-                    >
-                      Add to cart
+                    <div className="flex flex-row gap-[10px] sm:flex-col">
+                      <div
+                        // onClick={() => addItemToCart(item?.Product?.id)}
+                        className="font-poppins cursor-pointer text-[16px] sm:text-center font-bold px-[20px] py-[10px] bg-red-600 text-white rounded-md"
+                      >
+                        Remove
+                      </div>
+                      <div
+                        onClick={() => addItemToCart(item?.Product?.id)}
+                        className="font-poppins cursor-pointer text-[16px] sm:text-center font-bold px-[20px] sm:px-[10px] py-[10px] bg-[#008000] text-white rounded-md"
+                      >
+                        Add to cart
+                      </div>
                     </div>
                   </div>
                 ))}
