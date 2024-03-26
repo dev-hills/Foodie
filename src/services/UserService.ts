@@ -67,3 +67,14 @@ export const createUserAddress = async (token, data) => {
 
   return response.data;
 };
+
+export const forgotPassword = async (data) => {
+  const response = await axios.post(`${base_url}/initiate-pass-reset`, data);
+
+  return response.data;
+};
+
+export const verifyOtp = async (data) => {
+  const response = await axios.post(`${base_url}/activate`, data);
+  return response.data;
+};

@@ -15,10 +15,12 @@ import Inbox from "./Pages/User/Inbox";
 import Faq from "./Pages/User/Faq";
 import SavedItems from "./Pages/User/SavedItems";
 import TopupWallet from "./Pages/User/TopupWallet";
+import VerifyForgotPassword from "./Pages/Auth/VerifyForgotPassword";
 
 const AppRoutes = () => {
   const UserToken = localStorage.getItem("token");
   const currentLocation = window.location.pathname;
+  const datee = localStorage.getItem("expiryDate");
 
   useEffect(() => {
     if (!UserToken && currentLocation !== "/login") {
@@ -27,8 +29,15 @@ const AppRoutes = () => {
       window.location.href = "/";
     } else if (!UserToken && currentLocation === "/") {
       window.location.href = "/login";
+    } else if (!UserToken && currentLocation === "/EditProfile") {
+      window.location.href = "/EditProfile";
     }
   }, [UserToken, currentLocation]);
+
+  console.log("now date", new Date());
+  console.log("expiry date", localStorage.getItem("expiryDate"));
+  console.log("expiry date new", new Date(datee));
+  console.log(new Date() < new Date(datee));
 
   const checkTokenExpiry = () => {
     const token = localStorage.getItem("token");
@@ -37,7 +46,8 @@ const AppRoutes = () => {
       if (expiryDate) {
         const now = new Date();
         const expiryDateTime = new Date(expiryDate);
-        if (now >= expiryDateTime) {
+        if (now <= expiryDateTime) {
+          // Changed the comparison operator
           localStorage.removeItem("token");
           localStorage.removeItem("expiryDate");
           window.location.href = "/login";
@@ -56,6 +66,10 @@ const AppRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verifyotp" element={<VerifyOtp />} />
+        <Route
+          path="/verifyForgotPassword"
+          element={<VerifyForgotPassword />}
+        />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/ChooseKitchen" element={<Kitchen />} />
         <Route path="/KitchenMenu/:id" element={<KitchenMenu />} />

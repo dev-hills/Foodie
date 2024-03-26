@@ -4,6 +4,7 @@ import {
   decreaseItemInCart,
   increaseItemInCart,
   removeItemFromCart,
+  removeSavedItem,
   saveItem,
 } from "../../services/CartService";
 
@@ -39,5 +40,12 @@ export const useSaveItem = (token) => {
   return useMutation({
     mutationKey: ["saveItem"],
     mutationFn: (data) => saveItem(token, data),
+  });
+};
+
+export const useRemoveSavedItem = (token) => {
+  return useMutation({
+    mutationKey: ["saveItem"],
+    mutationFn: (id) => removeSavedItem(token, id),
   });
 };

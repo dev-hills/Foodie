@@ -7,6 +7,8 @@ import { useCreateProfile, useUploadMedia } from "../../hooks/mutations/user";
 
 import { typeCreateProfile } from "../../utils/types";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditProfile = () => {
   const token = localStorage.getItem("token");
@@ -33,8 +35,7 @@ const EditProfile = () => {
     }
   };
 
-  const uploadFile = (e) => {
-    e.preventDefault();
+  const uploadFile = () => {
     if (!file) {
       alert("Please choose a file before uploading.");
       return;
@@ -47,8 +48,8 @@ const EditProfile = () => {
       onSuccess: (res) => {
         console.log(res);
         setPictureId(res.id);
-        queryClient.invalidateQueries({
-          queryKey: [`Login`],
+        toast.success(`Image Upload successful :)`, {
+          position: toast.POSITION.TOP_LEFT,
         });
       },
       onError: (error) => {
@@ -77,7 +78,7 @@ const EditProfile = () => {
         console.log(res);
         console.log(firstName, lastName);
         console.log(token);
-        navigate("/");
+        navigate("/login");
         queryClient.invalidateQueries({
           queryKey: [`Login`],
         });
@@ -132,12 +133,12 @@ const EditProfile = () => {
                 </div>
               </div>
             </div>
-            <button
+            <div
               onClick={uploadFile}
               className="px-[35px] py-[10px] bg-[#008000] rounded-[5px] text-white text-[15px] font-poppins font-semibold mb-[10px]"
             >
               {isPending ? "Loading..." : "Upload Image"}
-            </button>
+            </div>
           </form>
         </div>
 

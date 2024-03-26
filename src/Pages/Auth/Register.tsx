@@ -57,7 +57,6 @@ const Register = () => {
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(registerDetails, confirmPassword);
 
     const dataToSend: typeRegisterDetails = {
       emailAddress: registerDetails.email,

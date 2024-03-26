@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import {
   createProfile,
   createUserAddress,
+  forgotPassword,
   setAddressDefault,
   uploadImage,
 } from "../../services/UserService";
@@ -34,5 +35,12 @@ export const useCreateUserAddress = (token) => {
   return useMutation({
     mutationKey: ["createUserAddress"],
     mutationFn: (data) => createUserAddress(token, data),
+  });
+};
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationKey: ["forgotPassword"],
+    mutationFn: (data) => forgotPassword(data),
   });
 };

@@ -29,7 +29,7 @@ const Orders = () => {
 
         {data?.status === 200 ? (
           data?.data?.orders.length === 0 ? (
-            <div className="flex flex-col items-center justify-center gap-[20px] mt-[100px]">
+            <div className="w-[80%] flex flex-col items-center justify-center gap-[20px] mt-[100px]">
               <p className="font-poppins text-[22px] font-bold">
                 Your have no orders
               </p>

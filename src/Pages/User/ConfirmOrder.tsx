@@ -48,13 +48,9 @@ const ConfirmOrder = () => {
     const height = 600;
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
-    const popupWindow = window.open(
-      url,
-      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,status=yes`
-    );
-    if (popupWindow) {
-      popupWindow.focus();
-    }
+    const options = `width=${width},height=${height},left=${left},top=${top}`;
+
+    window.open(url, "_blank", options);
   };
 
   console.log(data);
@@ -172,8 +168,14 @@ const ConfirmOrder = () => {
 
                     <div>
                       {data?.data?.addresses?.rows.length === 0 ? (
-                        <div>
-                          You have no address <br /> Add address
+                        <div className="flex flex-col items-center font-poppins font-semibold text-[17px] gap-[10px]">
+                          You have no address{" "}
+                          <div
+                            onClick={() => setOpenAddressModal(true)}
+                            className="bg-[#008000] text-white px-[10px] py-[5px] rounded-[5px] cursor-pointer"
+                          >
+                            Add address
+                          </div>
                         </div>
                       ) : (
                         data?.data?.addresses?.rows.map((address, idx) => (

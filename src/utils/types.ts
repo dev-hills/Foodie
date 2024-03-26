@@ -14,7 +14,7 @@ export type typeOtp = {
   email: string;
   onVerify: (otp: string) => void;
   onResend: () => void;
-  verifyLoading: boolean;
+  verifyLoading?: boolean;
 };
 
 export type typeVerifyAccount = {

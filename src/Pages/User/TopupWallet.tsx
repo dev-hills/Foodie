@@ -22,13 +22,9 @@ const TopupWallet = () => {
     const height = 600;
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
-    const popupWindow = window.open(
-      url,
-      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,status=yes`
-    );
-    if (popupWindow) {
-      popupWindow.focus();
-    }
+    const options = `width=${width},height=${height},left=${left},top=${top}`;
+
+    window.open(url, "_blank", options);
   };
 
   const handleWalletTopup = () => {

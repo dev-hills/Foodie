@@ -14,9 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 import loader from "/loaderWhite.svg";
 
 const Login = () => {
-  const currentDate = new Date();
-  const currentGMTString = currentDate.toUTCString();
-  console.log(currentGMTString);
   // const { setToken, setUserId } = useAuth();
   const { mutate, isPending } = useLogin();
   const queryClient = useQueryClient();

@@ -1,19 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import Navbar from "../../Components/Navbar";
 import ProfileCard from "../../Components/ProfileCard";
 import { useGetSavedItem } from "../../hooks/queries/cart";
 import "react-toastify/dist/ReactToastify.css";
 import loader from "/loader.svg";
 
-import { useAddToCart } from "../../hooks/mutations/cart";
+import { useAddToCart, useRemoveSavedItem } from "../../hooks/mutations/cart";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const SavedItems = () => {
   const token = localStorage.getItem("token");
   const { data } = useGetSavedItem(token);
+  const queryClient = useQueryClient();
   const { mutate } = useAddToCart(token);
+  const { mutate: removeSaved } = useRemoveSavedItem(token);
 
   console.log(data);
 
@@ -35,7 +37,7 @@ const SavedItems = () => {
     mutate(dataToSend, {
       onSuccess: (res) => {
         console.log(res);
-        toast.success(`LOGIN SUCCESSFUL :)`, {
+        toast.success(`Added SUCCESSFUL :)`, {
           position: toast.POSITION.TOP_LEFT,
         });
       },
@@ -44,6 +46,25 @@ const SavedItems = () => {
       },
     });
   };
+
+  const removeSavedItem = (id) => {
+    removeSaved(id, {
+      onSuccess: (res) => {
+        console.log(res);
+        toast.success(`Removed SUCCESSFULLY :)`, {
+          position: toast.POSITION.TOP_LEFT,
+        });
+
+        queryClient.invalidateQueries({
+          queryKey: [`getSavedItem`],
+        });
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
+  };
+
   return (
     <div>
       <Navbar />
@@ -53,7 +74,7 @@ const SavedItems = () => {
 
         {data?.status === 200 ? (
           data?.data?.savedItems?.rows.length === 0 ? (
-            <div className="flex flex-col items-center justify-center gap-[20px] mt-[100px]">
+            <div className="w-[80%] flex flex-col items-center justify-center gap-[20px] mt-[100px]">
               <p className="font-poppins text-[22px] font-bold">
                 Your have no saved items
               </p>
@@ -93,7 +114,7 @@ const SavedItems = () => {
 
                     <div className="flex flex-row gap-[10px] sm:flex-col">
                       <div
-                        // onClick={() => addItemToCart(item?.Product?.id)}
+                        onClick={() => removeSavedItem(item?.Product?.id)}
                         className="font-poppins cursor-pointer text-[16px] sm:text-center font-bold px-[20px] py-[10px] bg-red-600 text-white rounded-md"
                       >
                         Remove

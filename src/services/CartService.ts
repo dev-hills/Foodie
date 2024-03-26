@@ -87,3 +87,13 @@ export const getSavedItem = async (token) => {
 
   return response.data;
 };
+
+export const removeSavedItem = async (token, id) => {
+  const response = await axios.delete(`${base_url}/saved?productId=${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

@@ -39,7 +39,7 @@ const Navbar = () => {
       <div
         className={
           displayHamburger
-            ? "hidden sm:w-[100%] sm:h-[65vh] sm:bg-white sm:fixed sm:z-[100000] sm:drop-shadow-xl sm:p-10 sm:flex sm:flex-col sm:items-center sm:rounded-t-none sm:rounded-b-[10px]"
+            ? "hidden sm:w-[100%] sm:h-auto sm:bg-white sm:fixed sm:z-[100000] sm:drop-shadow-xl sm:p-10 sm:flex sm:flex-col sm:items-center sm:rounded-t-none sm:rounded-b-[10px]"
             : "hidden"
         }
       >
